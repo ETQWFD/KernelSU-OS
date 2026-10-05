@@ -78,11 +78,18 @@
     <string name="safe_mode_module_disabled">Module installation is disabled in safe mode</string>
     <string name="reboot_to_apply">Reboot to take effect</string>
     <string name="module_magisk_conflict">Modules are unavailable due to a conflict with Magisk!</string>
-    <string name="home_learn_kernelsu">Learn KernelSU</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Learn how to install KernelSU and use modules.</string>
-    <string name="home_support_title">Support Us</string>
-    <string name="home_support_content">KernelSU is, and always will be, free, and open source. However, you can show us that you care by making a donation.</string>
+    <string name="home_learn_kernelsu">Learn KernelSU OS</string>
+    <string name="home_learn_kernelsu_url">https://mcp.edgeone.site/share/qJ3h7aESSNGcHCoYCtOG2</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install KernelSU OS, use modules and the bundled GKI images.</string>
+    <string name="home_support_title">KernelSU OS Website</string>
+    <string name="home_support_content">Open the KernelSU OS official site for downloads, updates and guides.</string>
+    <string name="gki_exporting_title">Exporting GKI images</string>
+    <string name="gki_exporting_message">KernelSU OS is extracting the bundled GKI patch images to your Download folder…</string>
+    <string name="gki_done_title">GKI images are ready</string>
+    <string name="gki_done_message">%1$d GKI patch images were extracted to:\n%2$s\n\nOpen this folder and pick an image when patching a kernel. Note: GKI images only work on devices with a GKI kernel (5.10+).</string>
+    <string name="gki_error_title">Export failed</string>
+    <string name="gki_export_entry">Export bundled GKI images</string>
+    <string name="gki_export_entry_summary">Extract the built-in GKI patch images to Download/KernelSU OS</string>
     <string name="home_gki_warning">Starting from v3.0.0, the GKI work mode will be used only in testing environments. We do not recommend it for daily use, and image files will no longer be provided.</string>
     <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Join our %2$s channel]]></string>
     <string name="profile" translatable="false">App Profile</string>

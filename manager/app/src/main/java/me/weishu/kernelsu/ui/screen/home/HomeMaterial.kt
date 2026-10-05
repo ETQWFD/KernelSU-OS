@@ -29,6 +29,7 @@ import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Smartphone
+import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Tag
 import androidx.compose.material.icons.filled.VolunteerActivism
 import androidx.compose.material.icons.rounded.Block
@@ -375,11 +376,12 @@ private fun SupportLinks(
     modifier: Modifier = Modifier,
 ) {
     val learnMoreUrl = stringResource(R.string.home_learn_kernelsu_url)
+    val gkiContext = androidx.compose.ui.platform.LocalContext.current
 
     SegmentedColumn(modifier = modifier.fillMaxWidth()) {
         item {
             SegmentedListItem(
-                onClick = { onOpenUrl("https://patreon.com/weishu") },
+                onClick = { onOpenUrl(me.weishu.kernelsu.ui.util.OS_WEBSITE_URL) },
                 headlineContent = { Text(stringResource(R.string.home_support_title)) },
                 supportingContent = { Text(stringResource(R.string.home_support_content)) },
                 leadingContent = {
@@ -395,6 +397,19 @@ private fun SupportLinks(
                 supportingContent = { Text(stringResource(R.string.home_click_to_learn_kernelsu)) },
                 leadingContent = {
                     Icon(Icons.AutoMirrored.Filled.MenuBook, stringResource(R.string.home_learn_kernelsu))
+                },
+                trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null) },
+            )
+        }
+        item {
+            SegmentedListItem(
+                onClick = {
+                    me.weishu.kernelsu.ui.util.GkiManager.export(gkiContext)
+                },
+                headlineContent = { Text(stringResource(R.string.gki_export_entry)) },
+                supportingContent = { Text(stringResource(R.string.gki_export_entry_summary)) },
+                leadingContent = {
+                    Icon(Icons.Filled.Download, stringResource(R.string.gki_export_entry))
                 },
                 trailingContent = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, null) },
             )

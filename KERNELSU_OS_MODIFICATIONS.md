@@ -51,3 +51,27 @@ manager UI installable and usable on 32-bit Android 10 phones.
 
 Warranty: this program is distributed WITHOUT ANY WARRANTY, as permitted by
 the GPL-3.0. Flashing kernels may brick your device; you bear that risk.
+
+## v1.1.0-OS additional changes
+
+5. **Bundled official GKI kernel modules**
+   - The eight official aarch64 GKI `*_kernelsu.ko` images from upstream
+     release v3.3.0 (android12-5.10 through android17-6.18) are shipped:
+       - copied into `manager/app/src/main/assets/gki/` (inside the APK);
+       - force-added under `userspace/ksud/bin/aarch64/` so the rebuilt
+         aarch64 `ksud` embeds them via RustEmbed, letting GKI devices patch
+         a boot/kernel image without a separate download.
+   - On first launch the manager requests storage permission and exports
+     these images to the public `Download/KernelSU OS/` folder (MediaStore
+     Downloads on API 29+; direct write below that), then shows a dialog with
+     the full path. A Home entry can re-export them at any time.
+   - GKI images only apply to GKI kernels (5.10+). Non-GKI 4.14/4.19 devices
+     cannot gain root from them.
+
+6. **Rebranded external links**
+   - The Home "Learn" entry and the former donation entry now open the
+     KernelSU OS website / this repository instead of kernelsu.org or
+     patreon.com.
+
+7. **Version bumped** to v1.1.0-OS (versionCode 2). Same signing key as
+   v1.0.0-OS, so upgrades install over the previous build.

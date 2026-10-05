@@ -55,6 +55,10 @@ internal suspend fun isDownloadAvailable(uri: Uri): Boolean = withContext(Dispat
 const val OS_REPO_OWNER = "ETQWFD"
 const val OS_REPO_NAME = "KernelSU-OS"
 
+// KernelSU OS official website (static site deployed from this project),
+// reachable inside WeChat / QQ built-in browsers.
+const val OS_WEBSITE_URL = "https://mcp.edgeone.site/share/qJ3h7aESSNGcHCoYCtOG2"
+
 fun installApk(uri: Uri) {
     // Hand the downloaded APK to the system package installer. The URI comes
     // from our own MediaStore Downloads insert, so a transient read grant via

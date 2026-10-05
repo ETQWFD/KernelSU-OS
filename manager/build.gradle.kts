@@ -12,8 +12,8 @@ extra["androidBuildToolsVersion"] = "37.0.0"
 extra["androidCompileNdkVersion"] = libs.versions.ndk.get()
 extra["androidSourceCompatibility"] = JavaVersion.VERSION_21
 extra["androidTargetCompatibility"] = JavaVersion.VERSION_21
-extra["managerVersionCode"] = 1
-extra["managerVersionName"] = "v1.0.0-OS"
+extra["managerVersionCode"] = 2
+extra["managerVersionName"] = "v1.1.0-OS"
 
 // KernelSU OS: pinned versions (shallow clone has no git tags/history).
 // Bump managerVersionCode on every published release; the in-app updater

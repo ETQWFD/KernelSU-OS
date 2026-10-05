@@ -28,7 +28,7 @@
     <string name="safe_mode">Sikker tilstand</string>
     <string name="reboot_to_apply">Genstart for at tage effekt</string>
     <string name="home_learn_kernelsu">Lær KernelSU</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
+    <string name="home_learn_kernelsu_url">https://mcp.edgeone.site/share/qJ3h7aESSNGcHCoYCtOG2</string>
     <string name="home_click_to_learn_kernelsu">Lær hvordan man installerer KernelSU og moduler.</string>
     <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Join our %2$s channel]]></string>
     <string name="profile_default">Standard</string>

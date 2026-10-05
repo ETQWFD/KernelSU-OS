@@ -65,11 +65,18 @@
     <string name="safe_mode_module_disabled">处于安全模式下，禁止安装模块</string>
     <string name="reboot_to_apply">重启生效</string>
     <string name="module_magisk_conflict">因与 Magisk 有冲突，所有模块不可用！</string>
-    <string name="home_learn_kernelsu">了解 KernelSU</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/zh_CN/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">了解如何安装 KernelSU 以及如何开发模块</string>
-    <string name="home_support_title">支持开发</string>
-    <string name="home_support_content">KernelSU 将保持免费开源，向开发者捐赠以表示支持</string>
+    <string name="home_learn_kernelsu">了解 KernelSU OS</string>
+    <string name="home_learn_kernelsu_url">https://mcp.edgeone.site/share/qJ3h7aESSNGcHCoYCtOG2</string>
+    <string name="home_click_to_learn_kernelsu">了解如何安装 KernelSU OS、使用模块，以及内置 GKI 修补镜像的用法</string>
+    <string name="home_support_title">访问 KernelSU OS 官网</string>
+    <string name="home_support_content">在官网下载最新版本、查看更新日志与使用教程</string>
+    <string name="gki_exporting_title">正在导出 GKI 修补镜像</string>
+    <string name="gki_exporting_message">KernelSU OS 正在把内置的 GKI 修补镜像解压到下载目录…</string>
+    <string name="gki_done_title">GKI 修补镜像已就绪</string>
+    <string name="gki_done_message">已将 %1$d 个 GKI 修补镜像解压到：\n%2$s\n\n修补内核时可打开该目录选择镜像。注意：GKI 镜像仅适用于 GKI 内核（5.10 及以上）设备。</string>
+    <string name="gki_error_title">导出失败</string>
+    <string name="gki_export_entry">导出内置 GKI 修补镜像</string>
+    <string name="gki_export_entry_summary">把内置的 GKI 修补镜像解压到 Download/KernelSU OS</string>
     <string name="home_gki_warning">自 v3.0.0 起 GKI 工作模式将仅用于测试环境，我们不建议用于日常使用，也不再提供镜像文件</string>
     <string name="about_source_code"><![CDATA[在 %1$s 查看源码<br/>加入我们的 %2$s 频道<br/>加入我们的 <b><a href="https://pd.qq.com/s/8lipl1brp">QQ</a></b> 频道]]></string>
     <string name="profile_default">默认</string>

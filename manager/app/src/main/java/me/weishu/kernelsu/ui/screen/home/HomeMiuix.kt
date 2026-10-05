@@ -453,6 +453,7 @@ private fun SupportLinks(
     modifier: Modifier = Modifier,
 ) {
     val learnMoreUrl = stringResource(R.string.home_learn_kernelsu_url)
+    val gkiContext = androidx.compose.ui.platform.LocalContext.current
 
     Card(modifier = modifier) {
         ArrowPreference(
@@ -466,7 +467,7 @@ private fun SupportLinks(
                     tint = colorScheme.onBackground,
                 )
             },
-            onClick = { onOpenUrl("https://patreon.com/weishu") },
+            onClick = { onOpenUrl(me.weishu.kernelsu.ui.util.OS_WEBSITE_URL) },
         )
         ArrowPreference(
             title = stringResource(R.string.home_learn_kernelsu),
@@ -480,6 +481,21 @@ private fun SupportLinks(
                 )
             },
             onClick = { onOpenUrl(learnMoreUrl) },
+        )
+        ArrowPreference(
+            title = stringResource(R.string.gki_export_entry),
+            summary = stringResource(R.string.gki_export_entry_summary),
+            startAction = {
+                Icon(
+                    imageVector = Icons.Filled.DeveloperBoard,
+                    contentDescription = stringResource(R.string.gki_export_entry),
+                    modifier = Modifier.padding(end = 6.dp),
+                    tint = colorScheme.onBackground,
+                )
+            },
+            onClick = {
+                me.weishu.kernelsu.ui.util.GkiManager.export(gkiContext)
+            },
         )
     }
 }
