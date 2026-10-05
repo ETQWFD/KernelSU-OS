@@ -60,6 +60,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import me.weishu.kernelsu.KernelVersion
 import me.weishu.kernelsu.Natives
 import me.weishu.kernelsu.R
@@ -153,19 +154,32 @@ private fun UpdateCard(
     val newVersion = state.latestVersionInfo
     val title = stringResource(id = R.string.module_changelog)
     val updateText = stringResource(id = R.string.module_update)
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    // KernelSU OS: download the new APK inside the app, then open the installer.
+    val startUpdate: () -> Unit = {
+        scope.launch {
+            runCatching {
+                me.weishu.kernelsu.ui.util.download(
+                    url = newVersion.downloadUrl,
+                    fileName = "KernelSU_OS_v${newVersion.versionCode}.apk",
+                    onDownloaded = { uri -> me.weishu.kernelsu.ui.util.installApk(uri) },
+                )
+            }
+        }
+    }
 
     AnimatedVisibility(
         visible = state.hasUpdate,
         enter = fadeIn() + expandVertically(),
         exit = shrinkVertically() + fadeOut()
     ) {
-        val updateDialog = rememberConfirmDialog(onConfirm = { actions.onOpenUrl(newVersion.downloadUrl) })
+        val updateDialog = rememberConfirmDialog(onConfirm = { startUpdate() })
         WarningCard(
             message = stringResource(id = R.string.new_version_available, newVersion.versionCode),
             level = WarningLevel.Notice
         ) {
             if (newVersion.changelog.isEmpty()) {
-                actions.onOpenUrl(newVersion.downloadUrl)
+                startUpdate()
             } else {
                 updateDialog.showConfirm(
                     title = title,

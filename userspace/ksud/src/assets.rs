@@ -50,6 +50,12 @@ struct Asset;
 #[folder = "bin/riscv64"]
 struct Asset;
 
+// KernelSU OS: 32-bit ARM (armv7) assets so ksud can run on 32-bit devices.
+#[cfg(all(target_arch = "arm", target_os = "android"))]
+#[derive(RustEmbed)]
+#[folder = "bin/arm"]
+struct Asset;
+
 // If not Android, ie. macos, linux, windows, include all architectures.
 #[cfg(not(target_os = "android"))]
 #[derive(RustEmbed)]

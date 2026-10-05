@@ -44,9 +44,34 @@ internal suspend fun isDownloadAvailable(uri: Uri): Boolean = withContext(Dispat
     }.getOrDefault(false)
 }
 
+/**
+ * KernelSU OS update source.
+ *
+ * The in-app updater checks the *latest GitHub Release* of this repository
+ * and downloads the first asset whose name ends with `.apk`. The asset file
+ * name must embed the version code, e.g. KernelSU_OS_v1.0.0-OS_1.apk
+ * (the "_1" is the integer versionCode).
+ */
+const val OS_REPO_OWNER = "ETQWFD"
+const val OS_REPO_NAME = "KernelSU-OS"
+
+fun installApk(uri: Uri) {
+    // Hand the downloaded APK to the system package installer. The URI comes
+    // from our own MediaStore Downloads insert, so a transient read grant via
+    // the intent flag is enough on Android 10.
+    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
+        setDataAndType(uri, "application/vnd.android.package-archive")
+        addFlags(
+            android.content.Intent.FLAG_ACTIVITY_NEW_TASK or
+                android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
+        )
+    }
+    ksuApp.startActivity(intent)
+}
+
 fun checkNewVersion(): LatestVersionInfo {
     if (!isNetworkAvailable(ksuApp)) return LatestVersionInfo()
-    val url = "https://api.github.com/repos/tiann/KernelSU/releases/latest"
+    val url = "https://api.github.com/repos/$OS_REPO_OWNER/$OS_REPO_NAME/releases/latest"
     // default null value if failed
     val defaultValue = LatestVersionInfo()
     runCatching {
@@ -67,7 +92,9 @@ fun checkNewVersion(): LatestVersionInfo {
                         continue
                     }
 
-                    val regex = Regex("v(.+?)_(\\d+)-")
+                    // KernelSU OS: accept KernelSU_OS_v1.0.0-OS_1.apk (the
+                    // integer after the last underscore is the versionCode).
+                    val regex = Regex("v(.+?)_(\\d+)")
                     val matchResult = regex.find(name) ?: continue
                     matchResult.groupValues[1]
                     val versionCode = matchResult.groupValues[2].toInt()

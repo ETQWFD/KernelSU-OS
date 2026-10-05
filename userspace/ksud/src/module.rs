@@ -229,7 +229,9 @@ impl SigchldBlock {
             }
             let timeout = libc::timespec {
                 tv_sec: remaining.as_secs() as libc::time_t,
-                tv_nsec: remaining.subsec_nanos().into(),
+                // KernelSU OS: tv_nsec is i64 on 64-bit but i32 on 32-bit (armv7);
+                // subsec nanos are always < 1_000_000_000, so the cast is safe.
+                tv_nsec: remaining.subsec_nanos() as _,
             };
             // SIGCHLD stays blocked between waitpid and sigtimedwait to avoid lost wakeups.
             if unsafe {

@@ -23,8 +23,8 @@ val managerVersionCode = rootProject.extra["managerVersionCode"] as Int
 val managerVersionName = rootProject.extra["managerVersionName"] as String
 
 val isPrBuild = project.findProperty("IS_PR_BUILD")?.toString()?.toBoolean() ?: false
-val defaultManagerPackageName = if (isPrBuild) "me.weishu.kernelsu.pr" else "me.weishu.kernelsu"
-val defaultManagerName = if (isPrBuild) "KernelSU PR" else "KernelSU"
+val defaultManagerPackageName = if (isPrBuild) "etc.kernelsu.os.pr" else "etc.kernelsu.os"
+val defaultManagerName = if (isPrBuild) "KernelSU OS PR" else "KernelSU OS"
 val managerPackageName = project.findProperty("KSU_PACKAGE_NAME")?.toString() ?: defaultManagerPackageName
 val managerName = project.findProperty("KSU_NAME")?.toString() ?: defaultManagerName
 
@@ -160,7 +160,10 @@ android {
         }
 
         ndk {
-            abiFilters += listOf("arm64-v8a", "x86_64", "riscv64")
+            // KernelSU OS: ship 64-bit ARM (arm64-v8a) and 32-bit ARM
+            // (armeabi-v7a) only, so the manager also runs on 32-bit
+            // Android 10 phones; ksud is cross-compiled for both ABIs.
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
         }
     }
 
