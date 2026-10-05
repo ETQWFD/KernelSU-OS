@@ -90,6 +90,9 @@
     <string name="gki_error_title">Export failed</string>
     <string name="gki_export_entry">Export bundled GKI images</string>
     <string name="gki_export_entry_summary">Extract the built-in GKI patch images to Download/KernelSU OS</string>
+    <string name="kmi_not_gki_title">This device is not a GKI device</string>
+    <string name="kmi_not_gki_message">No device KMI was detected (shown as Unknown). KernelSU GKI images only work on GKI kernels (Android 12+ / kernel 5.10 and above). This device runs a non-GKI kernel (4.14), so no bundled image matches it and you cannot gain root via \"select and patch\" or \"local LKM\". You need to build KernelSU into the kernel source of this device and flash it with an unlocked bootloader.</string>
+    <string name="kmi_list_empty">No GKI image is available in the current runtime (the 32-bit runtime ships no GKI modules, and this kernel is not GKI).</string>
     <string name="home_gki_warning">Starting from v3.0.0, the GKI work mode will be used only in testing environments. We do not recommend it for daily use, and image files will no longer be provided.</string>
     <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Join our %2$s channel]]></string>
     <string name="profile" translatable="false">App Profile</string>

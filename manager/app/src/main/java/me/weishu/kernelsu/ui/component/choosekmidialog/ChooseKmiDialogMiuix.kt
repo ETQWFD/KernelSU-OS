@@ -1,25 +1,34 @@
 package me.weishu.kernelsu.ui.component.choosekmidialog
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import me.weishu.kernelsu.R
 import me.weishu.kernelsu.ui.util.getCurrentKmi
 import me.weishu.kernelsu.ui.util.getSupportedKmis
@@ -42,6 +51,7 @@ fun ChooseKmiDialogMiuix(
         value = getCurrentKmi()
     }
     val currentSelection = rememberSaveable(currentKmi) { mutableStateOf(currentKmi) }
+    val isGki = currentKmi.isNotBlank()
     OverlayDialog(
         show = show,
         title = stringResource(R.string.select_kmi),
@@ -52,20 +62,56 @@ fun ChooseKmiDialogMiuix(
         },
         insideMargin = DpSize(0.dp, 24.dp),
         content = {
-            Column(modifier = Modifier.heightIn(max = 500.dp)) {
-                LazyColumn(modifier = Modifier.weight(1f, fill = false)) {
-                    items(supportedKMIs) { kmi ->
-                        CheckboxPreference(
-                            title = kmi,
-                            summary = if (kmi == currentKmi) stringResource(R.string.current_device_kmi) else null,
-                            insideMargin = PaddingValues(horizontal = 30.dp, vertical = 16.dp),
-                            checkboxLocation = CheckboxLocation.End,
-                            checked = currentSelection.value == kmi,
-                            holdDownState = currentSelection.value == kmi,
-                            onCheckedChange = { _ ->
-                                currentSelection.value = kmi
-                            }
+            Column(modifier = Modifier.heightIn(max = 520.dp)) {
+                if (!isGki) {
+                    Column(
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(Color(0x26FFCF5C))
+                            .padding(14.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.kmi_not_gki_title),
+                            color = Color(0xFFFFCF5C),
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp
                         )
+                        Spacer(Modifier.height(6.dp))
+                        Text(
+                            text = stringResource(R.string.kmi_not_gki_message),
+                            color = Color(0xFFE7D9B0),
+                            fontSize = 12.5.sp,
+                            lineHeight = 18.sp
+                        )
+                    }
+                    Spacer(Modifier.height(12.dp))
+                }
+                if (supportedKMIs.isEmpty()) {
+                    Box(modifier = Modifier.padding(horizontal = 28.dp, vertical = 18.dp)) {
+                        Text(
+                            text = stringResource(R.string.kmi_list_empty),
+                            color = Color(0xFF9DB4A8),
+                            fontSize = 13.sp,
+                            lineHeight = 19.sp
+                        )
+                    }
+                } else {
+                    LazyColumn(modifier = Modifier.weight(1f, fill = false)) {
+                        items(supportedKMIs) { kmi ->
+                            CheckboxPreference(
+                                title = kmi,
+                                summary = if (kmi == currentKmi) stringResource(R.string.current_device_kmi) else null,
+                                insideMargin = PaddingValues(horizontal = 30.dp, vertical = 16.dp),
+                                checkboxLocation = CheckboxLocation.End,
+                                checked = currentSelection.value == kmi,
+                                holdDownState = currentSelection.value == kmi,
+                                onCheckedChange = { _ ->
+                                    currentSelection.value = kmi
+                                }
+                            )
+                        }
                     }
                 }
                 Spacer(Modifier.height(12.dp))
@@ -81,7 +127,7 @@ fun ChooseKmiDialogMiuix(
                         text = stringResource(android.R.string.cancel),
                         modifier = Modifier.weight(1f),
                     )
-                    Spacer(modifier = Modifier.width(20.dp))
+                    Spacer(Modifier.width(20.dp))
                     TextButton(
                         enabled = supportedKMIs.contains(currentSelection.value),
                         onClick = {

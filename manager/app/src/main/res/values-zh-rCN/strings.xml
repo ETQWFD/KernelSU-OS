@@ -77,6 +77,9 @@
     <string name="gki_error_title">导出失败</string>
     <string name="gki_export_entry">导出内置 GKI 修补镜像</string>
     <string name="gki_export_entry_summary">把内置的 GKI 修补镜像解压到 Download/KernelSU OS</string>
+    <string name="kmi_not_gki_title">本机不是 GKI 设备，无法用此方式安装</string>
+    <string name="kmi_not_gki_message">没有检测到本机 KMI（显示为 Unknown）。KernelSU 的 GKI 镜像只适用于 GKI 内核（Android 12 起、内核 5.10 及以上）。你这台设备内核为 4.14，属于非 GKI 设备，列表中没有任何镜像与它匹配，因此无法通过“选择文件并修补 / 本地 LKM”获得 root。需要用该机型的内核源码把 KernelSU 内置编译成 boot 镜像，并解锁 Bootloader 后刷入。</string>
+    <string name="kmi_list_empty">当前运行环境没有可用的 GKI 镜像（32 位运行环境不内置 GKI 模块，且本机内核不是 GKI）。</string>
     <string name="home_gki_warning">自 v3.0.0 起 GKI 工作模式将仅用于测试环境，我们不建议用于日常使用，也不再提供镜像文件</string>
     <string name="about_source_code"><![CDATA[在 %1$s 查看源码<br/>加入我们的 %2$s 频道<br/>加入我们的 <b><a href="https://pd.qq.com/s/8lipl1brp">QQ</a></b> 频道]]></string>
     <string name="profile_default">默认</string>
