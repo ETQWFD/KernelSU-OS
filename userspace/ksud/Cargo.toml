@@ -30,7 +30,7 @@ rustix = { version = "1", features = [
     "all-apis",
 ] }
 android_logger = { version = "0.15", default-features = false }
-zip = { version = "8",  features = [
+zip = { version = "9",  features = [
     "deflate",
     "deflate64",
     "time",
@@ -58,4 +58,4 @@ adb_client = { git = "https://github.com/KernelSU2/adb_client" }
 prop-rs-android = { git = "https://github.com/KernelSU2/ksu_props", rev = "ddb6ee7294467f7f25bad2118e9e24eee104144b" }
 
 [build-dependencies]
-bindgen = "0.72"
+bindgen = "0.73"
